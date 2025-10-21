@@ -583,7 +583,15 @@ function getSkuFromUrl() {
  * @returns {string} The sanitized product link
  */
 export function getProductLink(urlKey, sku) {
-  return rootLink(`/products/${sanitizeName(urlKey)}/${sanitizeName(sku)}`);
+  if (!urlKey) {
+    console.warn('getProductLink: urlKey is missing or empty', { urlKey, sku });
+  }
+  if (!sku) {
+    console.warn('getProductLink: sku is missing or empty', { urlKey, sku });
+  }
+  const sanitizedUrlKey = urlKey ? sanitizeName(urlKey) : '';
+  const sanitizedSku = sku ? sanitizeName(sku) : '';
+  return rootLink(`/products/${sanitizedUrlKey}/${sanitizedSku}`.toLowerCase());
 }
 
 /**
