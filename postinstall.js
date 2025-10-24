@@ -37,7 +37,6 @@ fs.readdirSync('node_modules/@dropins', { withFileTypes: true }).forEach((file) 
   { from: '@adobe/magento-storefront-events-sdk/dist/index.js', to: 'commerce-events-sdk.js' },
   { from: '@adobe/adobe-client-data-layer/dist/adobe-client-data-layer.min.js', to: 'acdl/adobe-client-data-layer.min.js' },
   { from: '@adobe/adobe-client-data-layer/dist/adobe-client-data-layer.min.js.map', to: 'acdl/adobe-client-data-layer.min.js.map' },
-  { from: '@adobe/helix-shared-string/src/string.js', to: 'helix-shared-string.js' },
 ].forEach((file) => {
   fs.copyFileSync(path.resolve(__dirname, 'node_modules', file.from), path.resolve(__dirname, 'scripts', file.to));
 });
