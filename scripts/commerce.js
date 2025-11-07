@@ -610,7 +610,7 @@ export function getProductLink(urlKey, sku) {
   }
   const sanitizedUrlKey = urlKey ? sanitizeName(urlKey) : '';
   const sanitizedSku = sku ? sanitizeName(sku) : '';
-  return rootLink(`/products/${sanitizedUrlKey}/${sanitizedSku}`.toLowerCase());
+  return rootLink(`/products/${sanitizedUrlKey}/${sanitizedSku}`);
 }
 
 /**
