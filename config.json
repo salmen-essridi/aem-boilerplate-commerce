@@ -9,8 +9,9 @@
           "AC-View-Id":"08115f8d-bf17-4dfc-a6dd-af8fea7fb574",
           "AC-Environment-Id":"787ef9d9-e07f-47e5-ad8c-3cec1139dbed",
           "AC-Price-Book-Id":"base::b6589fc6ab0dc82cf12099d1c2d40ab994e8410c",
-          "AC-Scope-Locale":"default",
-          "X-Api-Key": "storefront-catalog-apollo"
+          "AC-Source-Locale":"default",
+          "X-Api-Key": "storefront-catalog-apollo",
+          "Magento-Customer-Group": "b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
         }
       },
       "analytics": {
