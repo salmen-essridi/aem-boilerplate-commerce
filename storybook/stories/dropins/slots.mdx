@@ -1,0 +1,339 @@
+{/* Adobe Commerce Dropin Slots Reference */}
+
+# Adobe Commerce Dropin Slots Reference
+
+Slots allow you to inject custom HTML content into specific areas of dropin containers without changing their internal structure.
+
+## How Slots Work
+
+```javascript
+import { render } from '@dropins/storefront-cart/render.js';
+import { CartSummaryList } from '@dropins/storefront-cart/containers/CartSummaryList.js';
+
+render(CartSummaryList, {
+  slots: {
+    SlotName: (ctx) => {
+      // ctx contains data specific to that slot
+      const element = document.createElement('div');
+      element.innerHTML = 'Your custom content';
+      return element;
+    }
+  }
+})(document.getElementById('container'));
+```
+
+---
+
+## PDP (Product Details Page)
+
+### ProductDetails Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Title</code></td><td>Product name area</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>SKU</code></td><td>SKU display area</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>RegularPrice</code></td><td>Original price</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>SpecialPrice</code></td><td>Sale/discounted price</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Options</code></td><td>Product variants (size, color)</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Quantity</code></td><td>Quantity selector</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Actions</code></td><td>Add to cart button area</td><td><code>{'{ data, values, valid, appendButton }'}</code></td></tr>
+    <tr><td><code>ShortDescription</code></td><td>Brief product description</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Description</code></td><td>Full product description</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Attributes</code></td><td>Product specifications</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Breadcrumbs</code></td><td>Navigation breadcrumbs</td><td><code>{'{ data, values, valid, setSeparator, appendLink, appendHTMLElement }'}</code></td></tr>
+    <tr><td><code>GalleryContent</code></td><td>Image gallery area</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>InfoContent</code></td><td>Product info section</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+    <tr><td><code>Content</code></td><td>Main content area</td><td><code>{'{ data, values, valid }'}</code></td></tr>
+  </tbody>
+</table>
+
+### ProductGallery Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>CarouselThumbnail</code></td><td>Thumbnail images</td><td><code>{'{ data, defaultImageProps }'}</code></td></tr>
+    <tr><td><code>CarouselMainImage</code></td><td>Main product image</td><td><code>{'{ data, defaultImageProps }'}</code></td></tr>
+  </tbody>
+</table>
+
+### ProductOptions Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Swatches</code></td><td>Color/size swatches</td><td><code>{'{ data, optionsUIDs }'}</code></td></tr>
+    <tr><td><code>SwatchImage</code></td><td>Individual swatch image</td><td><code>{'{ data, optionsUIDs, imageSwatchContext, defaultImageProps }'}</code></td></tr>
+  </tbody>
+</table>
+
+### ProductAttributes Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Attributes</code></td><td>Product attributes table</td><td><code>{'{ data }'}</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Cart
+
+### CartSummaryList Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Heading</code></td><td>Cart title</td><td>-</td></tr>
+    <tr><td><code>EmptyCart</code></td><td>Empty cart state</td><td>-</td></tr>
+    <tr><td><code>Footer</code></td><td>Bottom section</td><td>-</td></tr>
+    <tr><td><code>Thumbnail</code></td><td>Product image</td><td><code>{'{ item, defaultImageProps }'}</code></td></tr>
+    <tr><td><code>ProductAttributes</code></td><td>Item attributes</td><td>-</td></tr>
+    <tr><td><code>CartSummaryFooter</code></td><td>Summary footer</td><td>-</td></tr>
+    <tr><td><code>CartItem</code></td><td>Individual cart item</td><td>-</td></tr>
+    <tr><td><code>UndoBanner</code></td><td>Undo removal notification</td><td><code>{'{ item, loading, error, onUndo, onDismiss }'}</code></td></tr>
+    <tr><td><code>ItemTitle</code></td><td>Product name</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemPrice</code></td><td>Unit price</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemQuantity</code></td><td>Quantity control</td><td><code>{'{ item, enableUpdateItemQuantity, handleItemQuantityUpdate, ... }'}</code></td></tr>
+    <tr><td><code>ItemTotal</code></td><td>Line total</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemSku</code></td><td>SKU display</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemRemoveAction</code></td><td>Delete button</td><td><code>{'{ item, enableRemoveItem, handleItemQuantityUpdate, ... }'}</code></td></tr>
+  </tbody>
+</table>
+
+### MiniCart Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>ProductList</code></td><td>List of products</td><td>-</td></tr>
+    <tr><td><code>ProductListFooter</code></td><td>Products footer</td><td>-</td></tr>
+    <tr><td><code>PreCheckoutSection</code></td><td>Before checkout area</td><td>-</td></tr>
+    <tr><td><code>Thumbnail</code></td><td>Product image</td><td><code>{'{ item, defaultImageProps }'}</code></td></tr>
+    <tr><td><code>Heading</code></td><td>Cart title</td><td>-</td></tr>
+    <tr><td><code>EmptyCart</code></td><td>Empty state</td><td>-</td></tr>
+    <tr><td><code>Footer</code></td><td>Bottom section</td><td>-</td></tr>
+    <tr><td><code>ProductAttributes</code></td><td>Item attributes</td><td>-</td></tr>
+    <tr><td><code>CartSummaryFooter</code></td><td>Summary footer</td><td>-</td></tr>
+    <tr><td><code>CartItem</code></td><td>Individual item</td><td>-</td></tr>
+    <tr><td><code>UndoBanner</code></td><td>Undo notification</td><td><code>{'{ item, loading, error, onUndo, onDismiss }'}</code></td></tr>
+    <tr><td><code>ItemTitle</code></td><td>Product name</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemPrice</code></td><td>Unit price</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemQuantity</code></td><td>Quantity control</td><td><code>{'{ item, enableUpdateItemQuantity, ... }'}</code></td></tr>
+    <tr><td><code>ItemTotal</code></td><td>Line total</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemSku</code></td><td>SKU display</td><td><code>{'{ item }'}</code></td></tr>
+    <tr><td><code>ItemRemoveAction</code></td><td>Delete button</td><td><code>{'{ item, enableRemoveItem, ... }'}</code></td></tr>
+  </tbody>
+</table>
+
+### OrderSummary Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>EstimateShipping</code></td><td>Shipping estimate</td><td>-</td></tr>
+    <tr><td><code>Coupons</code></td><td>Coupon input</td><td>-</td></tr>
+    <tr><td><code>GiftCards</code></td><td>Gift card input</td><td>-</td></tr>
+  </tbody>
+</table>
+
+---
+
+## Checkout
+
+### PlaceOrder Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Content</code></td><td>Button content</td><td><code>{'{ code }'}</code></td></tr>
+  </tbody>
+</table>
+
+### LoginForm Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Heading</code></td><td>Form heading</td><td><code>{'{ authenticated }'}</code></td></tr>
+  </tbody>
+</table>
+
+### PaymentMethods Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Methods</code></td><td>Payment method renderers</td><td><code>{'{ [code]: { render: ({ cartId, replaceHTML }) => element } }'}</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Wishlist
+
+### Wishlist Container
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+      <th>Context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>image</code></td><td>Product image</td><td><code>{'{ defaultImageProps, item }'}</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Examples
+
+### Custom Cart Thumbnail with Badge
+
+```javascript
+render(CartSummaryList, {
+  slots: {
+    Thumbnail: ({ item, defaultImageProps }) => {
+      const div = document.createElement('div');
+      div.className = 'custom-thumbnail';
+      div.innerHTML = `
+        <img src="${defaultImageProps.src}" alt="${defaultImageProps.alt}" />
+        ${item.quantity > 1 ? `<span class="qty-badge">${item.quantity}</span>` : ''}
+      `;
+      return div;
+    }
+  }
+})(element);
+```
+
+### Custom Empty Cart Message
+
+```javascript
+render(MiniCart, {
+  slots: {
+    EmptyCart: () => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+          <p>Your bag is empty!</p>
+          <a href="/shop">Start Shopping</a>
+        </div>
+      `;
+      return div;
+    }
+  }
+})(element);
+```
+
+### Custom Product Actions (Add to Cart Area)
+
+```javascript
+render(ProductDetails, {
+  sku: 'ABC123',
+  slots: {
+    Actions: (ctx) => {
+      const { data, valid, appendButton } = ctx;
+
+      // Add custom button
+      appendButton({
+        text: 'Add to Wishlist',
+        icon: 'Heart',
+        variant: 'secondary',
+        onClick: () => console.log('Added to wishlist')
+      });
+
+      return null; // Return null to keep default + your additions
+    }
+  }
+})(element);
+```
+
+### Custom Payment Method
+
+```javascript
+render(PaymentMethods, {
+  slots: {
+    Methods: {
+      'checkmo': {
+        enabled: true,
+        displayLabel: true,
+        icon: '/icons/check.svg',
+        render: ({ cartId, replaceHTML }) => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+            <p>Pay by check or money order</p>
+            <p>Mail to: 123 Commerce St</p>
+          `;
+          replaceHTML(div);
+          return div;
+        }
+      }
+    }
+  }
+})(element);
+```

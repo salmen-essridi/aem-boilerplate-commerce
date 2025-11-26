@@ -1,0 +1,28 @@
+{
+  "name": "theme-blocks-storybook",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "storybook": "storybook dev -p 6007",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/html": "^7.6.17",
+    "@storybook/html-vite": "^7.6.17",
+    "playwright": "^1.57.0",
+    "storybook": "^7.6.17",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@dropins/storefront-account": "~1.2.0",
+    "@dropins/storefront-auth": "~2.1.5",
+    "@dropins/storefront-cart": "~1.5.1",
+    "@dropins/storefront-checkout": "~2.1.0",
+    "@dropins/storefront-order": "~1.4.0",
+    "@dropins/storefront-pdp": "~1.3.5",
+    "@dropins/storefront-wishlist": "~2.0.1",
+    "@dropins/tools": "~1.5.3"
+  }
+}
